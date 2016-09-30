@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.websudos:phantom-dsl_2.11:1.25.4">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/websudos/phantom-dsl_2.11/1.25.4/phantom-dsl_2.11-1.25.4.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/websudos/phantom-dsl_2.11/1.25.4/phantom-dsl_2.11-1.25.4-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/websudos/phantom-dsl_2.11/1.25.4/phantom-dsl_2.11-1.25.4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

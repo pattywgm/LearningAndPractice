@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.monifu:monifu-core_2.11:1.2">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/monifu/monifu-core_2.11/1.2/monifu-core_2.11-1.2.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/monifu/monifu-core_2.11/1.2/monifu-core_2.11-1.2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/monifu/monifu-core_2.11/1.2/monifu-core_2.11-1.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
