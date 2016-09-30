@@ -18,6 +18,26 @@
 
     <dependencies>
 
+        <!-- https://mvnrepository.com/artifact/com.twitter/bijection-core_2.10 -->
+        <dependency>
+            <groupId>com.twitter</groupId>
+            <artifactId>bijection-core_2.10</artifactId>
+            <version>0.9.2</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.twitter/bijection-util_2.11 -->
+        <dependency>
+            <groupId>com.twitter</groupId>
+            <artifactId>bijection-util_2.11</artifactId>
+            <version>0.9.2</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.twitter</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
         <dependency>
             <groupId>com.websudos</groupId>
             <artifactId>phantom-dsl_${scala.tock}</artifactId>

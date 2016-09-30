@@ -57,7 +57,6 @@ object FinagleRedisOperationDemo extends App {
   Await.all(delGoods)
 
   // set operation
-
   val setAndGetBooks = redisClient.sAdd(StringToChannelBuffer("books"),
     List(StringToChannelBuffer("Hali"), StringToChannelBuffer("Netty"),
       StringToChannelBuffer("Java"), StringToChannelBuffer("Hali"))).flatMap {
