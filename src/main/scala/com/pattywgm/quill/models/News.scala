@@ -6,7 +6,6 @@ import com.pattywgm.quill.models.NewsSource.NewsSourceEnum
 import com.twitter.bijection.Conversion._
 import com.twitter.bijection.twitter_util.UtilBijections.twitter2ScalaFuture
 import com.twitter.util.{Future => TwitterFuture}
-import io.getquill.ast.NumericOperator.%
 import io.getquill.{CamelCase, CassandraAsyncContext, FinagleMysqlContext}
 import org.joda.time.DateTime
 
@@ -30,7 +29,7 @@ case class News(id: Int, content: String, title: String, link: String, source: N
 
 case class NewsC(id: Int, content: String)
 
-case class NewsQueryOption(content: String = "", title: String = "", source: Seq[NewsSourceEnum])
+case class NewsQueryOption(ids: List[Int], content: String = "", title: String = "", source: Seq[NewsSourceEnum])
 
 abstract class ConcreteSqlNews(val mariadb: FinagleMysqlContext[CamelCase]) {
 
@@ -62,9 +61,18 @@ abstract class ConcreteSqlNews(val mariadb: FinagleMysqlContext[CamelCase]) {
     mariadb.run(quote(query[News].filter(_.id == lift(id)).delete))
   }
 
-  def select(option: NewsQueryOption): TwitterFuture[Seq[News]] = {
-    val sql1 = quote(query[News])
+  def notIn = quote {
+    (ids: Query[Int], q: Query[News]) =>
+      infix"$q where id not in ($ids)".as[Query[News]]
 
+  }
+
+  def select(option: NewsQueryOption): TwitterFuture[Seq[News]] = {
+    // not in
+    val sql1 = option.ids.nonEmpty match {
+      case true => quote(notIn(liftQuery(option.ids), query[News]))
+      case false => quote(query[News])
+    }
     // like
     val sql2 = option.title.nonEmpty match {
       case true => quote(sql1.filter(_.title like "%" + lift(option.title) + "%"))

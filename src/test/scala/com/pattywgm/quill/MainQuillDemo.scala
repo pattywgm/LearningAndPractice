@@ -26,7 +26,7 @@ object MainQuillDemo extends App {
 
 //  newService.updNews(News(3, "国庆人流暴涨啊啊啊啊啊啊啊!", "国庆人流暴涨", "http://www.quill.com", NewsSource.SINA, DateTime.now))
 
-  newService.select(NewsQueryOption(title = "话题", source=Seq(NewsSource.SINA, NewsSource.NETEASE))).map{
+  newService.select(NewsQueryOption(ids=List(1,2), title = "话题", source=Seq.empty)).map{
     items => println(items)
   }
   Thread.sleep(3000)
