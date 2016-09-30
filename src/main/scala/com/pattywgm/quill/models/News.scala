@@ -76,6 +76,10 @@ abstract class ConcreteCqlNews(val ctx: CassandraAsyncContext[CamelCase]) {
     ctx.run(quote(newsC.filter(_.id == lift(id)).delete))
   }
 
+  def updNews(news: NewsC) = {
+    ctx.run(quote(newsC.filter(_.id == lift(news.id)).update(_.content -> lift(news.content))))
+  }
+
 
   // 此处将scala.concurent.Future转为twitter.Future
   def getById(id: Int): TwitterFuture[String] = {

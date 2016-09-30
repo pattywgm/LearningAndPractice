@@ -29,8 +29,9 @@ class NewsService {
     appDataBase.newsSql.insNews(news.copy(content = ""))
   }
 
-  def updNews(news: News): Future[Long] = {
-    appDataBase.newsSql.updNews(news)
+  def updNews(news: News) = {
+    appDataBase.newsCql.updNews(NewsC(news.id, news.content))
+    appDataBase.newsSql.updNews(news.copy(content = ""))
   }
 
   def updLink(id: Int, link: String): Future[Long] = {
