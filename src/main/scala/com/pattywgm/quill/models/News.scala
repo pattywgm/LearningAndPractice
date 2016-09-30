@@ -3,13 +3,12 @@ package com.pattywgm.quill.models
 import java.util.Date
 
 import com.pattywgm.quill.models.NewsSource.NewsSourceEnum
-import com.twitter.util.Future
-import io.getquill.{CamelCase, CassandraAsyncContext, FinagleMysqlContext}
-import org.joda.time.DateTime
-
 import com.twitter.bijection.Conversion._
 import com.twitter.bijection.twitter_util.UtilBijections.twitter2ScalaFuture
 import com.twitter.util.{Future => TwitterFuture}
+import io.getquill.ast.NumericOperator.%
+import io.getquill.{CamelCase, CassandraAsyncContext, FinagleMysqlContext}
+import org.joda.time.DateTime
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
@@ -30,6 +29,8 @@ object NewsSource extends Enumeration {
 case class News(id: Int, content: String, title: String, link: String, source: NewsSourceEnum, publishTime: DateTime)
 
 case class NewsC(id: Int, content: String)
+
+case class NewsQueryOption(content: String = "", title: String = "", source: Seq[NewsSourceEnum])
 
 abstract class ConcreteSqlNews(val mariadb: FinagleMysqlContext[CamelCase]) {
 
@@ -59,6 +60,24 @@ abstract class ConcreteSqlNews(val mariadb: FinagleMysqlContext[CamelCase]) {
 
   def delNews(id: Int): TwitterFuture[Long] = {
     mariadb.run(quote(query[News].filter(_.id == lift(id)).delete))
+  }
+
+  def select(option: NewsQueryOption): TwitterFuture[Seq[News]] = {
+    val sql1 = quote(query[News])
+
+    // like
+    val sql2 = option.title.nonEmpty match {
+      case true => quote(sql1.filter(_.title like "%" + lift(option.title) + "%"))
+      case false => sql1
+    }
+
+    // in
+    val sql3 = option.source.nonEmpty match {
+      case true => quote(sql2.filter(p => liftQuery(option.source.toList).contains(p.source)))
+      case false => sql2
+    }
+
+    mariadb.run(sql3)
   }
 }
 

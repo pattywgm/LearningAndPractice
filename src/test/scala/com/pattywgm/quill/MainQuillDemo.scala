@@ -1,6 +1,6 @@
 package com.pattywgm.quill
 
-import com.pattywgm.quill.models.{News, NewsSource}
+import com.pattywgm.quill.models.{NewsQueryOption, News, NewsSource}
 import com.pattywgm.quill.services.NewsService
 import org.joda.time.DateTime
 
@@ -24,6 +24,10 @@ object MainQuillDemo extends App {
 //    case _ => throw new Exception("Inserted Error!!!")
 //  }
 
-  newService.updNews(News(3, "国庆人流暴涨啊啊啊啊啊啊啊!", "国庆人流暴涨", "http://www.quill.com", NewsSource.SINA, DateTime.now))
+//  newService.updNews(News(3, "国庆人流暴涨啊啊啊啊啊啊啊!", "国庆人流暴涨", "http://www.quill.com", NewsSource.SINA, DateTime.now))
+
+  newService.select(NewsQueryOption(title = "话题", source=Seq(NewsSource.SINA, NewsSource.NETEASE))).map{
+    items => println(items)
+  }
   Thread.sleep(3000)
 }

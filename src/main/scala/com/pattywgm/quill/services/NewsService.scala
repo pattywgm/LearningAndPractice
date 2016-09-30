@@ -1,6 +1,6 @@
 package com.pattywgm.quill.services
 
-import com.pattywgm.quill.models.{NewsC, News}
+import com.pattywgm.quill.models.{NewsQueryOption, NewsC, News}
 import com.pattywgm.quill.modules.AppDataBase
 import com.twitter.util.Future
 
@@ -41,5 +41,9 @@ class NewsService {
   def delOrder(id: Int): Future[Long] = {
     appDataBase.newsCql.delNews(id)
     appDataBase.newsSql.delNews(id)
+  }
+
+  def select(option: NewsQueryOption): Future[Seq[News]] = {
+    appDataBase.newsSql.select(option)
   }
 }
