@@ -1,6 +1,6 @@
 package com.pattywgm.quill.modules
 
-import com.pattywgm.quill.models.{ConcreteCqlNews, ConcreteSqlNews}
+import com.pattywgm.quill.models.{ConcreteUserStat, ConcreteCqlNews, ConcreteSqlNews}
 import io.getquill.{CamelCase, CassandraAsyncContext, FinagleMysqlContext}
 
 /**
@@ -16,4 +16,6 @@ class AppDataBase {
   object newsSql extends ConcreteSqlNews(mariadb)
 
   object newsCql extends ConcreteCqlNews(ctx)
+
+  object userCql extends ConcreteUserStat(ctx)
 }
