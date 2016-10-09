@@ -16,11 +16,12 @@ class NewsService {
 
   def getById(id: Int): Future[Option[News]] = {
     appDataBase.newsCql.getById(id).flatMap {
-      content =>
+      case Some(newsC) =>
         appDataBase.newsSql.getById(id).map {
-          case Some(news) => Some(news.copy(content = content))
+          case Some(news) => Some(news.copy(content = newsC.content))
           case None => throw new Exception("News doesn't exists!")
         }
+      case None => throw new Exception("News doesn't exists!")
     }
   }
 

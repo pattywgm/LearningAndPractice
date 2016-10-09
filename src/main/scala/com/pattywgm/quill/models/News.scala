@@ -109,10 +109,7 @@ abstract class ConcreteCqlNews(val ctx: CassandraAsyncContext[CamelCase]) {
 
 
   // 此处将scala.concurent.Future转为twitter.Future
-  def getById(id: Int): TwitterFuture[String] = {
-    ctx.run(quote(newsC.filter(_.id == lift(id)))).map(_.headOption).map {
-      case Some(item) => item.content
-      case None => throw new Exception("News doesn't exists!")
-    }.as[TwitterFuture[String]]
+  def getById(id: Int): TwitterFuture[Option[NewsC]] = {
+    ctx.run(quote(newsC.filter(_.id == lift(id)))).map(_.headOption).as[TwitterFuture[Option[NewsC]]]
   }
 }
