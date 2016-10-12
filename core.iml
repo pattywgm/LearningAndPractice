@@ -11,7 +11,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: com.twitter:bijection-core_2.10:0.9.2" level="project" />
+    <orderEntry type="library" name="Maven: com.twitter:bijection-core_2.11:0.9.2" level="project" />
     <orderEntry type="library" name="Maven: com.twitter:bijection-util_2.11:0.9.2" level="project" />
     <orderEntry type="library" name="Maven: com.websudos:phantom-dsl_2.11:1.25.4" level="project" />
     <orderEntry type="library" name="Maven: com.websudos:phantom-connectors_2.11:1.25.4" level="project" />
