@@ -20,7 +20,7 @@ class AppDataBase {
 
   val dataSource = BasicDataSourceFactory.createDataSource(properties)
 
-  val (jdbc, mapperDao, queryDao, txManager) = Setup.mysql(dataSource,
+  val (jdbc, mapperDao, queryDao, txManager) = Setup.oracle(dataSource,
     List(DepartEntity)
   )
 
