@@ -120,6 +120,26 @@
             <artifactId>filters</artifactId>
             <version>2.0.235-1</version>
         </dependency>
+
+        <!-- mapperDao -->
+        <dependency>
+            <groupId>com.googlecode.mapperdao</groupId>
+            <artifactId>mapperdao_2.11</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-dbcp2</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>11.2.0.3</version>
+        </dependency>
+        <!-- end mapperdao -->
     </dependencies>
 
     <build>
@@ -242,6 +262,10 @@
             <id>central</id>
             <name>central-repo</name>
             <url>https://repo1.maven.org/maven2</url>
+        </repository>
+        <repository>
+            <id>sonatype.releases</id>
+            <url>http://oss.sonatype.org/content/repositories/releases/</url>
         </repository>
     </repositories>
     <pluginRepositories>
