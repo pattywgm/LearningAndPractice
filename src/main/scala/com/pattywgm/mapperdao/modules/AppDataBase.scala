@@ -3,7 +3,6 @@ package com.pattywgm.mapperdao.modules
 import java.util.Properties
 
 import com.googlecode.mapperdao.utils.Setup
-import com.googlecode.mapperdao.{QueryDao, MapperDao}
 import com.pattywgm.mapperdao.daos.DepartDao
 import com.pattywgm.mapperdao.models.DepartEntity
 import org.apache.commons.dbcp2.BasicDataSourceFactory
