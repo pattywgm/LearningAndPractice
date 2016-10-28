@@ -10,6 +10,7 @@ import org.mybatis.scala.mapping._
   * Author: pattywgm 
   * Time: 16/10/20 下午4:38
   * Desc:
+  * binding ==> {?[T](propertyName, jdbcType=DBT, typeHandler=T[TH], mode=MD, numericScale=NS, resultMap=RM)}
   */
 object FreshLikeDao {
 
@@ -46,7 +47,8 @@ object FreshLikeDao {
 
     def xsql =
       <xsql>
-        {SELECT_SQL} where USER_ID LIKE
+        {SELECT_SQL}
+        where USER_ID LIKE
         {"userId" ?}
       </xsql>
   }
@@ -59,7 +61,7 @@ object FreshLikeDao {
         ,
         {"freshId" ?}
         ,
-        NOW()
+        {?("cTime", typeHandler = T[DateTimeTypeHandler])}
         )
       </xsql>
   }
