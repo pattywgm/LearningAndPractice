@@ -139,7 +139,20 @@
             <artifactId>ojdbc6</artifactId>
             <version>11.2.0.3</version>
         </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>6.0.4</version>
+        </dependency>
         <!-- end mapperdao -->
+
+        <!-- Mybatis -->
+        <dependency>
+            <groupId>org.mybatis.scala</groupId>
+            <artifactId>mybatis-scala-core_2.11</artifactId>
+            <version>1.0.3</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -248,6 +261,19 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.6</version>
+            </plugin>
+
+            <!-- Mybatis-->
+            <plugin>
+                <groupId>org.scala-tools</groupId>
+                <artifactId>maven-scala-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
             </plugin>
         </plugins>
     </build>
