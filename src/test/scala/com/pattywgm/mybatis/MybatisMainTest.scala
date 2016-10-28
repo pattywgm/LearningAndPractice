@@ -1,7 +1,9 @@
 package com.pattywgm.mybatis
 
 import com.pattywgm.mybatis.daos.FreshLikeDao
+import com.pattywgm.mybatis.models.FreshLike
 import com.pattywgm.mybatis.modules.Config
+import org.joda.time.DateTime
 
 /**
   * Version: 3.0
@@ -13,6 +15,14 @@ object MybatisMainTest extends App{
   val db = Config.persistenceContext
 
   db.transaction { implicit session =>
-    FreshLikeDao.getById("03c5c47d-8d0b-4687-b76d-b33e8319ab68") foreach(print(_))
+    val f = new FreshLike
+    f.userId = "user2"
+    f.freshId = "fresh2"
+    f.cTime = DateTime.now()
+//    FreshLikeDao.insertOne(f)
+//    FreshLikeDao.deleteOne(f)
+//    FreshLikeDao.updateOne(f)
+//    FreshLikeDao.getById("user2") foreach(print(_))
+    FreshLikeDao.getByUserId("user_") foreach(println(_))
   }
 }

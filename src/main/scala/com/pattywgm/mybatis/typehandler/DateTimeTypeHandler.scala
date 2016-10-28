@@ -17,10 +17,10 @@ class DateTimeTypeHandler extends TypeHandler[DateTime] {
 
   override def setParameter(ps: PreparedStatement, i: Int, parameter: DateTime, jdbcType: JdbcType): Unit = {
     if (parameter != null) {
-      ps.setTimestamp(i, new Timestamp(parameter.asInstanceOf[DateTime].getMillis))
+      ps.setTimestamp(i, new Timestamp(parameter.getMillis))
     }
     else
-      ps.setTimestamp(i, null)
+      ps.setTimestamp(i, new Timestamp(DateTime.now.getMillis))
   }
 
   override def getResult(rs: ResultSet, columnName: String): DateTime = {

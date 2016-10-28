@@ -15,7 +15,7 @@ class FreshLike {
   var cTime : DateTime = _
 
   override def toString: String = {
-    return ("userId: %s ==> freshId: %s".format(userId, freshId))
+    return ("userId: %s , freshId: %s, cTime: %s".format(userId, freshId, cTime))
   }
 }
 

@@ -2,9 +2,8 @@ package com.pattywgm.mybatis.daos
 
 import com.pattywgm.mybatis.models.FreshLike
 import com.pattywgm.mybatis.typehandler.DateTimeTypeHandler
-import org.mybatis.scala.mapping.TypeHandlers.{OptTimestampTypeHandler, OptStringTypeHandler}
-import org.mybatis.scala.mapping._
 import org.mybatis.scala.mapping.Binding._
+import org.mybatis.scala.mapping._
 
 /**
   * Version: 3.0
@@ -28,16 +27,63 @@ object FreshLikeDao {
 
   val findAll = new SelectList[FreshLike] {
     resultMap = FreshLikeMap
+
     def xsql = SELECT_SQL
   }
 
   val getById =
     new SelectOneBy[String, FreshLike] {
       resultMap = FreshLikeMap
+
       def xsql =
-        <xsql> select * from t_cpdaily_freshLikes where user_id = {"userId"?} </xsql>
+        <xsql>select * from t_cpdaily_freshLikes where user_id =
+          {"userId" ?}
+        </xsql>
     }
 
+  val getByUserId = new SelectListBy[String, FreshLike] {
+    resultMap = FreshLikeMap
 
-  def bind = Seq(findAll, getById)
+    def xsql =
+      <xsql>
+        {SELECT_SQL} where USER_ID LIKE
+        {"userId" ?}
+      </xsql>
+  }
+
+  val insertOne = new Insert[FreshLike] {
+    def xsql =
+      <xsql>
+        insert into t_cpdaily_freshLikes(USER_ID, FRESH_ID, C_TIME) values (
+        {"userId" ?}
+        ,
+        {"freshId" ?}
+        ,
+        NOW()
+        )
+      </xsql>
+  }
+
+  val deleteOne = new Delete[FreshLike] {
+    def xsql =
+      <xsql>
+        delete from t_cpdaily_freshLikes where USER_ID=
+        {"userId" ?}
+        and FRESH_ID=
+        {"freshId" ?}
+      </xsql>
+  }
+
+  val updateOne = new Update[FreshLike] {
+    def xsql =
+      <xsql>
+        update t_cpdaily_freshLikes set C_Time=NOW() WHERE USER_ID=
+        {"userId" ?}
+        and FRESH_ID=
+        {"freshId" ?}
+      </xsql>
+  }
+
+
+  def bind = Seq(findAll, getById, insertOne, deleteOne, updateOne, getByUserId)
 }
