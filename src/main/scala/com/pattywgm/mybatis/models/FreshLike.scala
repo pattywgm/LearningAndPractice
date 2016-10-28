@@ -10,9 +10,16 @@ import org.joda.time.DateTime
   */
 
 class FreshLike {
-  var userId : String = _
-  var freshId : String = _
-  var cTime : DateTime = _
+  var userId: String = _
+  var freshId: String = _
+  var cTime: DateTime = _
+
+  def this(userId: String, freshId: String, cTime: DateTime) {
+    this()
+    this.userId = userId
+    this.freshId = freshId
+    this.cTime = cTime
+  }
 
   override def toString: String = {
     return ("userId: %s , freshId: %s, cTime: %s".format(userId, freshId, cTime))
@@ -21,9 +28,7 @@ class FreshLike {
 
 object FreshLike {
 
-  def apply(cTime: DateTime) = {
-    val freshLike = new FreshLike
-    freshLike.cTime = cTime
-    freshLike
+  def apply(userId: String, freshId: String, cTime: DateTime) = {
+    new FreshLike(userId, freshId, cTime)
   }
 }
