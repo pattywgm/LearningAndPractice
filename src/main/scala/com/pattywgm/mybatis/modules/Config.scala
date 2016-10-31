@@ -8,7 +8,7 @@ package com.pattywgm.mybatis.modules
   */
 
 
-import com.pattywgm.mybatis.daos.FreshLikeDao
+import com.pattywgm.mybatis.daos.{FreshDao, FreshLikeDao}
 import org.mybatis.scala.config.Configuration
 
 object Config {
@@ -19,6 +19,7 @@ object Config {
   // Create a configuration space, add the data access method
   config.addSpace("cpdailySpace") { space =>
     space ++= FreshLikeDao
+    space ++= FreshDao
   }
 
   // Build the session manager
