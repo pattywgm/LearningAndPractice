@@ -123,9 +123,9 @@
 
         <!-- mapperDao -->
         <dependency>
-            <groupId>com.googlecode.mapperdao</groupId>
+            <groupId>com.wisedu.mapperdao</groupId>
             <artifactId>mapperdao_2.11</artifactId>
-            <version>1.0.1</version>
+            <version>1.0.2</version>
         </dependency>
 
         <dependency>
@@ -153,6 +153,27 @@
             <artifactId>mybatis-scala-core_2.11</artifactId>
             <version>1.0.3</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>4.3.3.RELEASE</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-aop</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-context</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-expression</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
     </dependencies>
 
     <build>

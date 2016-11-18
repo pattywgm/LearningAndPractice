@@ -27,8 +27,8 @@ object mainMapperDemoTest extends App{
 //    case None => throw new Exception("Depart inserted but not found!")
 //  }
 
-  departService.selectByOption("njxz", DepartQueryOption(departIdPartNeed = true, departIdPart = "02")).map{
-    departs => print(departs)
+  departService.selectByOption("njxz", DepartQueryOption(departIdPartNeed = false, departIdPart = "02", departIds = Seq("0201", "020102"))).map{
+    departs => departs.foreach(println(_))
   }
 
 }

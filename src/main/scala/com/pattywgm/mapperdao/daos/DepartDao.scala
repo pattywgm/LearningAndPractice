@@ -50,7 +50,9 @@ abstract class DepartDao(val mapperDao: MapperDao, val queryDao: QueryDao) exten
         case true => q1.and(e.departId === option.departId)
         case false => q1
       }
-      query(q1)
+
+      q1 = if(option.departIds.length>0) q1.and(e.departId in option.departIds.mkString(",")) else q1
+      query(QueryConfig(offset = Some(0), limit = Some(10)), q1)
     }
   }
 

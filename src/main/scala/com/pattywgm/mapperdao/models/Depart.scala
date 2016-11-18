@@ -13,7 +13,8 @@ case class Depart(wid: String, departId: String, departName: String, departShort
                   tenantId: String, sortNo: Int = 0, updateTime: DateTime = DateTime.now)
 
 case class DepartQueryOption(departIdPart: String = "", departId: String = "",
-                             departIdNeed: Boolean = false, departIdPartNeed: Boolean = false)
+                             departIdNeed: Boolean = false, departIdPartNeed: Boolean = false,
+                             departIds: Seq[String])
 
 object DepartEntity extends Entity[String, NaturalStringId, Depart]("T_CPDAILY_DEPARTS") {
   val wid = key("WID") to (_.wid)
