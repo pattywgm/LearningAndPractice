@@ -3,8 +3,8 @@ package com.pattywgm.mapperdao.modules
 import java.util.Properties
 
 import com.googlecode.mapperdao.utils.Setup
-import com.pattywgm.mapperdao.daos.DepartDao
-import com.pattywgm.mapperdao.models.DepartEntity
+import com.pattywgm.mapperdao.daos.{PersonDao, DepartDao}
+import com.pattywgm.mapperdao.models.{HouseEntity, PersonEntity, DepartEntity}
 import org.apache.commons.dbcp2.BasicDataSourceFactory
 
 /**
@@ -19,11 +19,13 @@ class AppDataBase {
 
   val dataSource = BasicDataSourceFactory.createDataSource(properties)
 
-  val (jdbc, mapperDao, queryDao, txManager) = Setup.oracle(dataSource,
-    List(DepartEntity)
+  val (jdbc, mapperDao, queryDao, txManager) = Setup.mysql(dataSource,
+    List(DepartEntity, PersonEntity, HouseEntity)
   )
 
   object depart extends DepartDao(mapperDao, queryDao)
+
+  object person extends PersonDao(mapperDao, queryDao)
 
 //   jdbc 简单操作
 //  val connection = dataSource.getConnection
