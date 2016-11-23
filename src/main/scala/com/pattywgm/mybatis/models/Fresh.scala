@@ -59,7 +59,7 @@ class Fresh {
   }
 
   override def toString: String = {
-    return ("freshId: %s, content: %s, cTime: %s".format(freshId, content, cTime))
+    return ("freshId: %s, freshType: %s, content: %s, cTime: %s".format(freshId, freshType, content, cTime))
   }
 
 }
@@ -75,3 +75,11 @@ object Fresh {
       readNum, isDelete, isRecommend, replyFreshId, replyUserId, pFreshId)
   }
 }
+
+case class FreshQueryOption(notInFreshIds: Seq[String] = Seq.empty, freshType: String = "",
+                            inFreshIds: String = "", circleId: String = "", pFreshId: String = "",
+                            isRecommend: Boolean = false, circleIds: String = "",
+                            sortInfo: String = "", limits: Int = 10, offset: Int = 0,
+                            isDelete: Seq[String] = Seq("ENABLE"),
+                            cUserIds: Seq[String] = Seq.empty,
+                            resourceViewType: Seq[String] = Seq.empty, lastTimeValue: Long = 0L)

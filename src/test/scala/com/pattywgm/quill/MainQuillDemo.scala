@@ -26,8 +26,7 @@ object MainQuillDemo extends App {
 //    case _ => throw new Exception("Inserted Error!!!")
 //  }
 
-//  newService.updNews(News(3, "国庆人流暴涨啊啊啊啊啊啊啊!", "国庆人流暴涨", "http://www.quill.com", NewsSource.SINA, DateTime.now))
-
+//  newService.updNews(News(3, "国庆人流暴涨啊啊啊啊啊啊啊!", "国庆人流暴涨", "http://www.quill.com", NewsSource.SINA, DateTime.now)
   newService.select(NewsQueryOption(ids=List(1,2), title = "话题", source=Seq.empty)).map{
     items => println(items)
   }

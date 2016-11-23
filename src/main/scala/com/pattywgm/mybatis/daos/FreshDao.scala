@@ -1,6 +1,6 @@
 package com.pattywgm.mybatis.daos
 
-import com.pattywgm.mybatis.models.Fresh
+import com.pattywgm.mybatis.models.{Fresh, FreshQueryOption}
 import com.pattywgm.mybatis.typehandler._
 import org.mybatis.scala.mapping.Binding._
 import org.mybatis.scala.mapping._
@@ -17,7 +17,7 @@ object FreshDao {
     result(column = "fresh_Type", property = "freshType", typeHandler = T[FreshTypeHandler])
     result(column = "content", property = "content")
     result(column = "imgs", property = "imgs")
-    result(column = "fresh_Struct_Type", property = "freshStructType",  typeHandler = T[FreshStructTypeHandler])
+    result(column = "fresh_Struct_Type", property = "freshStructType", typeHandler = T[FreshStructTypeHandler])
     result(column = "resource_Id", property = "resourceId")
     result(column = "resource_View_Type", property = "resourceViewType", typeHandler = T[ViewTypeHandler])
     result(column = "cUser_Id", property = "cUserId")
@@ -51,6 +51,23 @@ object FreshDao {
       </xsql>
   }
 
-  def bind = Seq(getByFreshId)
+  val selectByOption = new SelectListPageBy[FreshQueryOption, Fresh] {
+    resultMap = FreshMap
+
+    def xsql =
+      <xsql>
+        {SELECT_SQL}
+        <where>
+          <if test="notInFreshIds != null or notInFreshIds.length() >0">
+            fresh_id not in
+            <foreach collection="notInFreshIds" item="item" index="index" open="(" separator="," close=")">
+              {"item" ?}
+            </foreach>
+          </if>
+        </where>
+      </xsql>
+  }
+
+  def bind = Seq(getByFreshId, selectByOption)
 
 }
